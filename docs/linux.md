@@ -16,7 +16,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 Download and extract the package:
 
 ```shell
-curl -L https://ollama.com/download/ollama-linux-amd64.tgz -o ollama-linux-amd64.tgz
+curl -LO https://ollama.com/download/ollama-linux-amd64.tgz
 sudo tar -C /usr -xzf ollama-linux-amd64.tgz
 ```
 
@@ -75,7 +75,7 @@ RestartSec=3
 Environment="PATH=$PATH"
 
 [Install]
-WantedBy=default.target
+WantedBy=multi-user.target
 ```
 
 Then start the service:
@@ -112,14 +112,14 @@ sudo systemctl status ollama
 > While AMD has contributed the `amdgpu` driver upstream to the official linux
 > kernel source, the version is older and may not support all ROCm features. We
 > recommend you install the latest driver from
-> https://www.amd.com/en/support/linux-drivers for best support of your Radeon
-> GPU.
+> [AMD](https://www.amd.com/en/support/download/linux-drivers.html) for best support
+> of your Radeon GPU.
 
 ## Customizing
 
 To customize the installation of Ollama, you can edit the systemd service file or the environment variables by running:
 
-```
+```shell
 sudo systemctl edit ollama
 ```
 
@@ -185,4 +185,10 @@ Remove the downloaded models and Ollama service user and group:
 sudo rm -r /usr/share/ollama
 sudo userdel ollama
 sudo groupdel ollama
+```
+
+Remove installed libraries:
+
+```shell
+sudo rm -rf /usr/local/lib/ollama
 ```

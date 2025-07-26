@@ -12,16 +12,15 @@ import (
 // '../lib/ollama' on Linux and the executable's directory on macOS
 // note: distribution builds, additional GPU-specific libraries are
 // found in subdirectories of the returned path, such as
-// 'cuda_v11', 'cuda_v12', 'rocm', etc.
+// 'cuda_v12', 'rocm', etc.
 var LibOllamaPath string = func() string {
 	exe, err := os.Executable()
 	if err != nil {
 		return ""
 	}
 
-	exe, err = filepath.EvalSymlinks(exe)
-	if err != nil {
-		return ""
+	if eval, err := filepath.EvalSymlinks(exe); err == nil {
+		exe = eval
 	}
 
 	var libPath string

@@ -20,13 +20,13 @@ Make sure that you use the same base model in the `FROM` command as you used to 
 
 Now run `ollama create` from the directory where the `Modelfile` was created:
 
-```bash
+```shell
 ollama create my-model
 ```
 
 Lastly, test the model:
 
-```bash
+```shell
 ollama run my-model
 ```
 
@@ -52,6 +52,8 @@ FROM /path/to/safetensors/directory
 ```
 
 If you create the Modelfile in the same directory as the weights, you can use the command `FROM .`.
+
+If you do not create the Modelfile, ollama will act as if there was a Modelfile with the command `FROM .`.
 
 Now run the `ollama create` command from the directory where you created the `Modelfile`:
 
@@ -132,22 +134,12 @@ success
 
 ### Supported Quantizations
 
-- `q4_0`
-- `q4_1`
-- `q5_0`
-- `q5_1`
 - `q8_0`
 
 #### K-means Quantizations
 
-- `q3_K_S`
-- `q3_K_M`
-- `q3_K_L`
 - `q4_K_S`
 - `q4_K_M`
-- `q5_K_S`
-- `q5_K_M`
-- `q6_K`
 
 
 ## Sharing your model on ollama.com
